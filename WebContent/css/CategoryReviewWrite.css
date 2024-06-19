@@ -1,0 +1,215 @@
+@charset "UTF-8";
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+@import
+	url('https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap')
+	;
+
+@import
+	url('https://fonts.googleapis.com/css?family=Do+Hyeon&display=swap');
+
+
+.backgroundBlack {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: #00000080;
+    top: 0;
+}
+
+article#writeSection {
+	margin : 15px auto;
+    height: 700px;
+    width: 95%;
+    position: relative;
+    bottom: 15px;
+}
+
+.writeMiddle img {
+	
+	max-width: 100%;
+	height: auto;
+	
+}
+
+section > #searchBox{
+	z-index: 9999
+}
+
+.closeBtn {
+    height: 25px;
+    width: 25px;
+    opacity: 60%;
+    position: absolute;
+    background-image: url(../images/board_icon/closeBtn.png);
+    background-size: 100% 100%;
+    left: 97%;
+}
+
+.closeBtn:hover {
+	transition-duration: 0.3s;
+	transform: rotate( 45deg );
+	background-image: url(../images/board_icon/closeBtn_over.png);
+}
+
+.writeDiv {
+    position: relative;
+    top: 10px;
+}
+
+.placeForm, .titleForm {
+    height: 36px;
+    width: 1000px;
+    margin-left: 1px;
+    margin-bottom: 3px;
+    background-color: #f5f5f5;
+    border: 1px solid #a9a9a9;
+    color: #333;
+    border-radius: 3px;
+}
+
+
+p.titleP span {
+    position: relative;
+    bottom: 2.2px;
+}
+
+p.titleP, p.placeP {
+    display: inline-block;
+    width: 97%;
+    margin: 0;
+    vertical-align: middle;
+    letter-spacing: 1pt;
+    position: relative;
+    top: 5px;
+    left: 2.5%;
+}
+
+p.titleP span, p.placeP span {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 10pt;
+    color: #363838;
+    margin-right: 20px;
+    margin-bottom: 0px;
+}
+
+p.placeP {
+    height: 34px;
+    top: 1px;
+}
+
+input[name="cr_title"] {
+    vertical-align: middle;
+    width: 92.5%;
+    height: 30.5px;
+    font-size: 12pt;
+    color: rgb(69, 76, 79);
+    text-indent: 15pt;
+    position: relative;
+    bottom: 3px;
+    padding-top: 1px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(193, 198, 200);
+    border-image: initial;
+    border-radius: 4px;
+}
+
+p.placeP img {
+    height: auto;
+    width: 2.2%;
+    position: absolute;
+    bottom: 8px;
+    left: 80px;
+}
+
+.searchIcon {
+    position: relative;
+    top: 0px;
+    right: 28px;
+    display: inline-block;
+    width: 33px;
+    height: 33px;
+    background-image: url(../images/board_icon/lowSearchNotRounding_icon.jpg);
+    background-size: 100% 100%;
+    border: 0.4px solid #87aec8;
+    border-radius: 0px 4px 4px 0px;
+}
+
+p.placeP span:nth-child(3) {
+    display: inline-block;
+    width: 150px;
+    height: 32px;
+    background-color: #ffffff;
+    border-radius: 4px;
+    border: 1px solid #bbb;
+    margin-top: 0px;
+}
+
+p.placeP > span:nth-child(1) {
+    position: relative;
+    bottom: 11px;
+}
+
+p.placeP > span:nth-child(3) > span {
+    position: absolute;
+    top: 8px;
+    margin-left: 40px;
+    font-weight: 300;
+    letter-spacing: 0.5pt;
+    white-space : nowrap;
+	overflow : hidden;
+	text-overflow: ellipsis;
+	width: 75pt;
+}
+
+.note-editor {
+	margin-left : 1px;
+}
+
+.writeFoot {
+    position: relative;
+    top: 25px;
+    width: 1000px;
+}
+
+.writeFoot input {
+    
+    width: 125px;
+    height: 30.5px;
+    border-radius: 3px;
+    border: 0;
+    font-size: 12pt;
+    letter-spacing: 2pt;
+    font-family: 'Do Hyeon', sans-serif;
+    box-shadow: -1px 1px 2px 0px #18425e59;
+    color: #FFF;
+    position: relative;
+    left: 37.2%;
+}
+
+.writeFoot input:nth-child(1) {
+	background-color: #57BEEC;
+}
+
+.writeFoot input:nth-child(1):hover {
+	background-color: #25AE70;
+}
+
+
+.writeFoot input:nth-child(2) {
+	background-color: #DB362C;
+}
+
+.writeFoot input:nth-child(2):hover {
+	background-color: #9f297a;
+}
+
+div.note-modal-content{
+	margin: 175px auto !important;
+}

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.trip.db.otherBoard.OtherBoard-mapper">
+	<!-- AlarmSQL -->
+	<select id="alarmlist" parameterType="string" resultType="alarmDto">
+		select a.*, 
+		case al_cate
+			when 0 then 'System' 
+			when 1 then 'Event' 
+			when 2 then (select cr_title from categoryreview where cr_no = al_rno) 
+			when 3 then (select tv_title from tripreview where tv_no = al_rno) 
+			else '-1' 
+			end al_rtitle
+		from alarmlist a where al_id = #{al_id} and al_aflag = 'N'
+	</select>
+	<delete id="alarmdelete" parameterType="int">
+		delete from alarm where al_no = #{al_no}
+	</delete>
+	<update id="alarmchange" parameterType="int">
+		update alarm set al_aflag = 'Y' where al_no = #{al_no}
+	</update>
+	<select id="alarmcount" parameterType="string" resultType="int">
+		select COUNT(al_id) from alarmlist where al_id = #{al_id} and al_aflag='N' group by al_id
+	</select>
+	
+	
+	<insert id="alarminsert" parameterType="alarmDto">
+		insert into alarm values (alarm_seq.nextval, #{al_id}, #{al_rno}, #{al_cate},'N',sysdate)	
+	</insert>
+	
+	<!-- FavoriteSQL -->
+	
+	<select id="favoriteList" parameterType="string" resultType="favoriteDto">
+		select * from favorite where f_id = #{f_id}
+	</select>
+	
+	<select id="favoriteCheck" parameterType="hashMap" resultType="int">
+		select count(*) from favorite where f_id = #{f_id} and f_pno = #{f_pno}
+	</select>
+	
+	<insert id="favoriteInsert" parameterType="favoriteDto">
+		insert into favorite values(favorite_seq.nextval,#{f_id},#{f_pno},#{f_cate},sysdate)
+	</insert>
+	
+	<delete id="favoriteDelete" parameterType="hashMap">
+		delete from favorite where f_id = #{f_id} and f_pno = #{f_pno}
+	</delete>
+	
+</mapper>
+

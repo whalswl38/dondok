@@ -1,0 +1,53 @@
+@charset "EUC-KR";
+
+  @import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap');
+   @import url('https://fonts.googleapis.com/css?family=Do+Hyeon&display=swap');
+      * {
+         font-family: 'Noto Sans KR', sans-serif;
+      }
+      
+      h1{ 
+         font-family: 'Do Hyeon', sans-serif;
+         margin: 50;
+      }
+      
+         #id{
+      border-radius:10px 10px 10px 10px;
+         width: 200pt;
+         height: 28pt;
+         background-color: #f3f3f3;
+		     text-align: left;
+   }
+  
+      #pass{
+         border-radius:10px 10px 10px 10px;
+         width: 200pt;
+         height: 28pt;
+         background-color: #f3f3f3;
+         text-align: left;
+      }
+      
+      #loginFormBox {
+          position: fixed;
+    top: 10%;
+    left: 30%;
+    width: 300px;
+    height: 500px;
+    z-index: 999;
+    background-color: #fff;
+    box-shadow: -1px 1px 2px #bbb;
+
+      }
+      
+      #loginBak {
+          position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #464646b8;
+    z-index: 990;
+      
+      }
+      
+      

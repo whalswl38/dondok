@@ -1,0 +1,258 @@
+@charset "UTF-8";
+
+
+* {
+	font-family: 'Noto Sans KR', sans-serif;
+	margin: 0;
+	padding: 0;
+	letter-spacing: 1pt;
+}
+
+
+#article_header, article.article_header {
+    height: 65px;
+    margin: 15px auto;
+    border-bottom: 1px solid #C1C6C8;
+    width: 887.458px;
+}
+
+.nowLocation{
+	float:left;
+	height: inherit;
+	margin-left: 2%;
+}
+
+.searchDiv{
+ 	display: none;
+    float: right;
+    height: inherit;
+    width: 45%;
+	margin-right: -5px;
+}
+
+.searchBar{
+	border-radius: 5px;
+    height: 2.2em;
+    vertical-align: middle;
+    width: 100%;
+    margin-top: 12px;
+    margin-right: 5px;
+    border: 1px solid #C1C6C8;
+    box-shadow: -1.5px 1.5px 3px 0px #18425e59;
+    font-size : 12pt;
+    color : #454C4F;
+    text-indent : 15pt;
+    padding-top : 3px;
+    float: right;
+}
+
+.searchBar::placeholder {
+	font-family: 'Do Hyeon', sans-serif;
+	font-size : 12pt;
+	color : #B3B6B7;
+}
+
+.searchIcon {
+	float: right;
+    margin-top: 12px;
+    margin-right: 1%;
+    width: 2.5em;
+    height: 2.5em;
+    background-image: url(../images/board_icon/lowSearch_icon.jpg);
+    background-size: 100% 100%;
+    border-radius: 5px;
+    box-shadow: -1.5px 1.5px 3px 0px #18425e59;
+}
+
+.searchIcon:hover {
+	transition-duration: 0.5s;
+	background-image: url(../images/board_icon/lowSearch_icon_over.jpg);
+}
+
+.writeIcon {
+	float: right;
+    margin-top: 12px;
+    margin-right: 2%;
+    width: 2.5em;
+    height: 2.5em;
+    background-image: url(../images/board_icon/write_icon.jpg);
+    background-size: 100% 100%;
+    border-radius: 5px;
+    box-shadow: -1.5px 1.5px 3px 0px #18425e59;
+}
+
+.testChk {
+	font-size:20pt;
+}
+
+.testView {
+	width: 20px;
+	height: 20px;
+	background-color: red;
+	position: relative;
+	left:0%;
+	transition: all 1s;
+}
+
+.writeIcon:hover {
+	transition-duration: 0.5s;
+	background-image: url(../images/board_icon/write_icon_over.jpg);
+}
+
+.locationName {
+	font-family: 'Do Hyeon', sans-serif;
+    font-size: 2.2em;
+    color: #363838;
+    display: inline-block;
+    margin-top: 5%;
+}
+
+.list_view {
+	width: 1075.190px;
+	height: 625px;
+	margin-bottom: 1.4%;
+}
+
+.list_view > div {
+	height: 48%;
+	margin-bottom: 2.3%;
+}
+
+.view_item {
+	width: 22%;
+	height: 100%;
+	margin-right: 4%;
+	float: left;
+	border-radius: 7% 7% 7% 7%;
+	background-size: 100% 100%;
+	position: relative;
+}
+
+div a:nth-child(4) .view_item {
+    margin-right: 0px;
+}
+
+.view_content {
+	border-radius: 10px 10px 10px 10px;
+    height: 282px;
+    margin: 3.5% 3.5% 3.5% 3.5%;
+    top: 0%;
+    position: absolute;
+    width: 219.988px;
+}
+
+.view_back {
+	background-color: #ffffffcc;
+    border-radius: 10px 10px 10px 10px;
+    height: 90px;
+    width: 219.988px;
+    margin: 3.5% 3.5% 3.5% 3.5%;
+    top: 64%;
+    position: relative;
+}
+
+.view_title {
+	display : inline-block;
+	width : 100%;
+	font-size: 11.5pt;
+	color: #454C4F;
+	font-weight: 600;
+	white-space : nowrap;
+	overflow : hidden;
+	text-overflow: ellipsis;
+}
+
+p {
+	position: relative;
+    padding-top: 6px;
+    margin-left: 12px;
+    margin-right: 12px;
+}
+
+.view_content div p{
+	top:85%;
+}
+
+hr {
+	border: 0.5px solid #C1C6C8;
+	width: 90%;
+	margin-left: 5%;
+	position: relative;
+	top: 223.5px;
+}
+
+.view_content p:nth-child(3),.view_content p:nth-child(4){
+	top: 221px;
+	height: 19.200px;
+}
+.view_teamid {
+	font-size: 10pt;
+	color: #454C4F;
+	float: left;
+	letter-spacing: 0pt; 
+}
+
+.view_date {
+	float: right;
+	font-size: 10pt;
+	color: #454C4F;
+	letter-spacing: 0pt; 
+}
+
+.view_count {
+	float: right;
+	clear: left;
+	font-size: 10pt;
+	color: #454C4F;
+	letter-spacing: 0pt; 
+}
+
+.view_content div {
+	height: 223.5px;
+	width: 219.988px;
+	position: absolute;
+	overflow: hidden;
+}
+
+.list_view div a:hover .view_item .view_back {
+	transition-duration: 1s;
+    height: 282px;
+    top: 0;
+}
+
+.list_view div a:hover .view_item .view_content div p:nth-child(1){
+	transition-duration: 1s;
+	top:0%;
+}
+
+.list_view div a:hover .view_item .view_content div p:nth-child(1) span {
+	transition-duration: 1s;
+	font-size: 16pt;
+	white-space : normal;
+	overflow : auto;
+	text-overflow: inherit;
+}
+
+.view_count>span:nth-child(1) {
+    display: block;
+    background-image: url(../images/board_icon/eye.svg);
+    background-size: 100% 100%;
+    height: 20px;
+    width: 20px;
+    float: left;
+    margin-right: 8px;
+    position: relative;
+    top: 1px;
+    opacity: 85%;
+}
+
+.notList {
+	width: 100%;
+	text-align: center;
+	margin: 0 auto;
+	display: block;
+	padding: 40px 25px;
+	font-size: 25px;
+	font-family: 'Do Hyeon', sans-serif;
+	color: #678896;
+}

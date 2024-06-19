@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.trip.db.categoryreview.CategoryReview-mapper">
+<!-- CategoryReviewSQL -->
+
+	<select id="selectList" resultType="categoryReviewDto" parameterType="hashMap">
+	select * from (select rownum no, cr_no, cr_id, cr_title, cr_contents, cr_date, cr_count, cr_delflag, cr_category, cr_placeid, cr_path from (select *  from categoryreview_read where cr_delflag='N' and cr_title like #{keyword} and cr_category = #{category} order by
+	<if test="m_id != null">
+	( case when cr_title like '%'||(select m_search from (select m_search, rownum no from (select m_search, count(m_search) count from keysearch where m_id = #{m_id} group by m_search order by count desc)) where no = 1)||'%' then cr_title end ) asc,
+	( case when cr_title like '%'||(select m_search from (select m_search, rownum no from (select m_search, count(m_search) count from keysearch where m_id = #{m_id} group by m_search order by count desc)) where no = 2)||'%' then cr_title end ) asc,
+	( case when cr_title like '%'||(select m_search from (select m_search, rownum no from (select m_search, count(m_search) count from keysearch where m_id = #{m_id} group by m_search order by count desc)) where no = 3)||'%' then cr_title end ) asc,
+	( case when cr_title like '%'||(select m_search from (select m_search, rownum no from (select m_search, count(m_search) count from keysearch where m_id = #{m_id} group by m_search order by count desc)) where no = 4)||'%' then cr_title end ) asc,
+	( case when cr_title like '%'||(select m_search from (select m_search, rownum no from (select m_search, count(m_search) count from keysearch where m_id = #{m_id} group by m_search order by count desc)) where no = 5)||'%' then cr_title end ) asc,
+	</if>
+	cr_no desc))where no between #{start} and #{end} 
+	</select>
+	<select id="selectOne" resultType="categoryReviewDto" parameterType="int">
+	select * from categoryreview_read where cr_delflag = 'N' and cr_no =  #{cr_no}
+	</select>
+	<select id="maxListNum" resultType="int">
+	select count(*) from categoryreview_read where cr_delflag = 'N'
+	</select>
+	
+	<insert id="insert" parameterType="categoryReviewDto">
+	insert into CATEGORYREVIEW values (CATEGORYREVIEW_ID.nextval, #{cr_id}, #{cr_title}, #{cr_contents}, sysdate, 0, 'N', #{cr_category}, #{cr_placeid}, #{cr_path})
+	</insert>
+	
+	<update id="delete" parameterType="int">
+	update categoryreview set cr_delflag = 'Y' where cr_no = #{cr_no}
+	</update>
+	
+	<update id="update" parameterType="categoryReviewDto">
+	update categoryreview set cr_contents = #{cr_contents}, cr_title = #{cr_title}, cr_placeid = #{cr_placeid}, cr_path = #{cr_path} where cr_delflag = 'N' and cr_no = #{cr_no}
+	</update>
+	
+	<update id="count" parameterType="int">
+	update categoryreview set cr_count = (select cr_count from categoryreview where cr_no = #{cr_no} )+1 where cr_no = #{cr_no}
+	</update>
+	
+	
+	<select id="selectMyReview" resultType="categoryReviewDto" parameterType="hashMap">
+	select cr.*,(select count(*) from categoryreviewcomment where rv_crno = cr_no) cr_commentCount from categoryreview_read cr where cr_delflag = 'N' and cr_id =  #{cr_id} and cr_placeid = #{cr_placeid} and cr_no not in ((select nvl(tvc_reviewid,0) from tripreview_contents where tvc_userid = #{cr_id} and tvc_delflag='N'))
+	</select>
+
+<!-- CategoryReviewCommentSQL -->
+
+	<select id="commentCount" parameterType="int" resultType="int">
+	select count(*) from categoryreviewcomment where rv_delflag = 'N' and rv_crno = #{rv_crno}
+	</select>
+
+	<select id="commentList" parameterType="hashMap" resultType="categoryCommentDto">
+	select * from (select rownum no, level, CONNECT_BY_ISLEAF isleaf, rv.* from categoryreviewcomment rv where rv_crno = #{rv_crno} start with rv_pno is null connect by prior rv_no = rv_pno) where no between 1 + (8*(#{page}-1)) and #{page} * 8
+	</select>
+	
+	
+	<insert id="commentInsert" parameterType="categoryCommentDto">
+	insert into categoryreviewcomment values (categoryreviewcomment_id.nextval, #{rv_crno},
+	
+	<if test="rv_pno == 0"> null, </if> <if test="rv_pno != 0"> #{rv_pno}, </if>
+	
+	#{rv_id}, #{rv_content}, sysdate, 'N')
+	</insert>
+	
+	<update id="commentUpdate" parameterType="categoryCommentDto">
+	update categoryreviewcomment set rv_content = #{rv_content} where rv_no = #{rv_no}
+	</update>
+	
+	<update id="commentDelete" parameterType="int">
+	update categoryreviewcomment set rv_delflag = 'Y' where rv_no = #{rv_no}
+	</update>
+	
+</mapper>

@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="memberMapper">
+<!-- member SQL -->
+	<select id="memberList" parameterType="memberLoginDto" resultType="memberLoginDto">
+		<!-- 로그인 -->
+				SELECT
+							M_ID,
+							M_NICK,
+							M_PASS,
+							M_NAME,
+							M_EMAIL,
+							M_PHONE,
+							M_FLAG,
+							M_GRADE,
+							M_PLATFORM,
+							M_FILEPATH,
+							M_ADDR1,
+							M_ADDR2
+		  FROM
+		  			MYMEMBER
+		 WHERE M_FLAG = 'Y'
+		 <if test="m_platform eq 'dondok'">
+		  	 AND
+		  			M_ID = #{m_id}
+		  	 AND
+		  	 		M_PASS = #{m_pass}
+		  	 AND
+		  			M_PLATFORM = 'dondok'
+		 </if>
+		 <if test="m_platform neq 'dondok'">
+		  	 AND
+		  			M_EMAIL = #{m_email}
+		  	 AND
+		  			M_PLATFORM = #{m_platform}
+		 </if>
+	</select>
+	
+	
+	<insert id="memberInsert" parameterType="memberLoginDto">
+		INSERT INTO
+							MYMEMBER(
+												M_ID,
+												M_NICK,
+												M_PASS,
+												M_NAME,
+												M_EMAIL,
+												M_PHONE,
+												M_FLAG,
+												M_GRADE,
+												M_PLATFORM,
+												M_FILEPATH,
+												M_ADDR1,
+												M_ADDR2
+											) 
+							
+		VALUES
+					(
+						#{m_id},
+						#{m_nick},
+						#{m_pass},
+						#{m_name},
+						#{m_email},
+						#{m_phone},
+						#{m_flag},
+						#{m_grade},
+						#{m_platform},
+						#{m_filepath},
+						#{m_addr1},
+						#{m_addr2}
+					)
+	</insert>
+	
+	<select id="dupCheck" parameterType="hashMap" resultType="hashMap">
+		<!-- 중복체크 -->
+		SELECT
+					  COUNT(M_ID) COUNT
+		  FROM
+		  			MYMEMBER
+		 WHERE 1 = 1
+		 <if test="param eq 'id'">
+		  	 AND
+		  			M_ID = #{paramValue}
+		 </if>
+		 <if test="param eq 'nick'">
+		  	 AND
+		  			M_NICK = #{paramValue}
+		 </if>
+		 <if test="param eq 'email'">
+		  	 AND
+		  			M_EMAIL = #{paramValue}
+		 </if>
+	</select>
+	
+	<select id="findIdPw" parameterType="memberLoginDto" resultType="memberLoginDto">
+		<!-- 로그인 -->
+		SELECT
+					 <if test="m_platform eq 'findId'">
+						M_ID
+					 </if>	
+					 <if test="m_platform eq 'findPw'">
+						M_PASS
+					 </if>	
+		  FROM
+		  			MYMEMBER
+		 WHERE M_FLAG = 'Y'
+		 AND M_NAME = #{m_name}
+		 AND M_EMAIL = #{m_email}
+		 <if test="m_platform eq 'findPw'">
+		  	 AND
+		  			M_ID = #{m_id}
+		 </if>	 
+	</select>
+	
+	<update id="resetPw" parameterType="memberLoginDto">
+		UPDATE
+				MYMEMBER
+		   SET
+		   		M_PASS = #{m_pass}
+		 WHERE 
+		 		 M_FLAG = 'Y'
+			 AND M_NAME = #{m_name}
+			 AND M_ID = #{m_id}
+			 AND M_EMAIL = #{m_email}
+	</update>
+	
+	<update id="updateMember" parameterType="memberLoginDto">
+		UPDATE
+				MYMEMBER
+		   SET
+		   		M_FILEPATH = #{m_filepath}
+		   <if test='m_pass != null and !"".equals(m_pass)'>
+		   		, M_PASS = #{m_pass}
+		   </if>
+		   <if test='m_nick != null and !"".equals(m_nick)'>
+		   		, M_NICK = #{m_nick}
+		   </if>
+		   <if test='m_phone != null and !"".equals(m_phone)'>
+		   		, M_PHONE = #{m_phone}
+		   </if>
+		   <if test='m_addr1 != null and !"".equals(m_addr1)'>
+		   		, M_ADDR1 = #{m_addr1}
+		   </if>
+		   <if test='m_addr2 != null and !"".equals(m_addr2)'>
+		   		, M_ADDR2 = #{m_addr2}
+		   </if>
+
+		 WHERE 
+		 		 M_FLAG = 'Y'
+			 AND M_NAME = #{m_name}
+			 AND M_ID = #{m_id}
+			 AND M_EMAIL = #{m_email}
+	</update>
+	
+	<update id="deleteMember" parameterType="memberLoginDto">
+		DELETE 
+					FROM
+							MYMEMBER
+		 WHERE 
+		 		 M_FLAG = 'Y'
+			 AND M_NAME = #{m_name}
+			 AND M_ID = #{m_id}
+			 AND M_EMAIL = #{m_email}
+	</update>
+	
+</mapper>

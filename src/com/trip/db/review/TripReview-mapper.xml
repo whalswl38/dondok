@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.trip.db.review.TripReview-mapper">
+<!-- tripReivewSQL -->
+
+	<select id="tripReview_List" resultType="tripReviewDto">
+	SELECT TV_NO, TV_TEAMID, TV_TITLE, TV_DATE, TV_MODIFYDATE, TV_COUNT, TV_DELFLAG FROM TRIPREVIEW ORDER BY TV_NO
+	</select>
+	<select id="tripReview_Select" resultType="tripReviewDto" parameterType="int">
+	SELECT * FROM TRIPREVIEW WHERE TV_NO = #{tv_no}
+	</select>
+	<select id="tripReivew_SelectTeam" resultType="tripReviewDto" parameterType="int">
+	SELECT * FROM TRIPREVIEW WHERE tv_teamid = #{tv_teamid}
+	</select>
+	<select id="tripReview_SelectTeamCount" resultType="int" parameterType="int">
+	SELECT count(*) FROM TRIPREVIEW WHERE tv_teamid = #{tv_teamid}
+	</select>
+	<insert id="tripReview_Insert" parameterType="tripReviewDto">
+	INSERT INTO TRIPREVIEW VALUES(TRIPREVIEW_ID.NEXTVAL, #{tv_teamid}, #{tv_title}, sysdate, null, 0, 'N')
+	</insert>
+	<update id="tripReview_Modify" parameterType="tripReviewDto">
+	UPDATE TRIPREVIEW SET TV_TITLE = #{tv_title}, TV_MODIFYDATE = sysdate WHERE TV_NO = #{tv_no}
+	</update>
+	<update id="tripReview_countUpdate" parameterType="int">
+	UPDATE TRIPREVIEW SET TV_COUNT = (SELECT TV_COUNT FROM TRIPREVIEW WHERE TV_NO = #{tv_no})+1 WHERE TV_NO = #{tv_no}
+	</update>
+	<delete id="tripReview_Delete" parameterType="int">
+	DELETE FROM TRIPREVIEW WHERE TV_NO = #{tv_no}
+	</delete>
+	
+<!--  tripReviewContentsSQL -->
+	<select id="tripReviewContents_List" resultType="tripReviewContentsDto" parameterType="hashMap">
+	<![CDATA[SELECT tvc_no, tvc_tvno, tvc_day, tvc_routeid, tvc_reviewid , nvl2(tvc_reviewid, (select CR_CONTENTS from CATEGORYREVIEW where CR_NO = tvc_reviewid and cr_delflag = 'N'), tvc_contents) as tvc_contents, nvl2(tvc_reviewid, (select CR_TITLE from CATEGORYREVIEW where CR_NO = tvc_reviewid and cr_delflag = 'N'), (case when DBMS_LOB.GETLENGTH(tvc_contents) <= 13 then DBMS_LOB.SUBSTR(tvc_contents,13,1) else DBMS_LOB.SUBSTR(tvc_contents,13,1) || '...' end)) tvc_title, tvc_userid, tvc_delflag, tvc_date, tvc_modifydate FROM TRIPREVIEW_CONTENTS WHERE TVC_TVNO = #{tvc_tvno} and TVC_ROUTEID = #{tvc_routeid} and TVC_DAY = #{tvc_day} and nvl2(tvc_reviewid,(select cr_delflag from CATEGORYREVIEW where CR_NO = tvc_reviewid),'N') = 'N' and tvc_delflag = 'N' ORDER BY TVC_DATE ASC ]]>
+	</select>
+	<select id="tripReviewContents_Select" resultType="tripReviewContentsDto" parameterType="int">
+	SELECT * FROM TRIPREVIEW_CONTENTS WHERE TVC_NO = #{tvc_no}
+	</select>
+	<insert id="tripReviewContents_Insert" parameterType="tripReviewContentsDto">
+	insert into tripreview_contents values(tripreview_contents_id.nextval, #{tvc_tvno}, #{tvc_day}, #{tvc_routeid}, 
+	
+		<if test="tvc_reviewid == 0">
+			null,
+    	</if>
+  		<if test="tvc_reviewid > 0">
+   	 		#{tvc_reviewid},
+    	</if>
+	 #{tvc_contents}, #{tvc_path}, 'N', sysdate, null, #{tvc_userid} )
+	</insert>
+	<update id="tripReviewContents_Update" parameterType="tripReviewContentsDto">
+	UPDATE TRIPREVIEW_CONTENTS SET TVC_CONTENTS = #{tvc_contents} and TVC_MODIFYDATE = sysdate WHERE TVC_NO = #{tvc_tvno}
+	</update>
+	<update id="tripReviewContents_Delete">
+	UPDATE TRIPREVIEW_CONTENTS SET tvc_delflag = 'Y' where tvc_no = #{tvc_tvno} 
+	</update>
+<!--  
+	<delete id="tripReviewContents_Delete" parameterType="int">
+	DELETE FROM TRIPREVIEW_CONTENTS WHERE TVC_NO = #{tvc_tvno}
+	</delete>
+-->
+	
+<!--  tripReviewViewSQL -->
+	<select id="tripReviewView_List" resultType="tripReviewViewDto" parameterType="hashMap">
+	select * from (select rownum no, tv_no,tv_teamid, tv_title, (select t_name from team where t_id = tv_teamid) tv_tname, tv_date, tv_count, tvc_no, tvc_path, cr_path, default_path from (select rownum no, tv_no,tv_teamid, tv_title, tv_date, tv_count, tvc_no, tvc_path, cr_path, nvl2(tvc_path,null,nvl2(cr_path,null,'images/default/'||ceil(DBMS_RANDOM.VALUE(1,10))||'.jpg')) default_path  from TRIPREVIEW_MAIN_VIEW where (tv_no, nvl(tvc_no,0)) in
+	(select tv_no, max(nvl(tvc_no,0)) from TRIPREVIEW_MAIN_VIEW where tvc_path is not null or cr_path is not null group by tv_no union 
+	select tv_no, max(nvl(tvc_no,0)) from TRIPREVIEW_MAIN_VIEW where tvc_path is null and cr_path is null and tv_no not in (select tv_no from TRIPREVIEW_MAIN_VIEW where tvc_path is not null or cr_path is not null group by tv_no) group by tv_no) and tv_title like #{keyword} order by
+	<if test="m_id != null">
+	( case when tv_title like '%'||(select m_search from (select m_search, rownum no from (select m_search, count(m_search) count from keysearch where m_id = #{m_id} group by m_search order by count desc)) where no = 1)||'%' then tv_title end ) asc,
+	( case when tv_title like '%'||(select m_search from (select m_search, rownum no from (select m_search, count(m_search) count from keysearch where m_id = #{m_id} group by m_search order by count desc)) where no = 2)||'%' then tv_title end ) asc,
+	( case when tv_title like '%'||(select m_search from (select m_search, rownum no from (select m_search, count(m_search) count from keysearch where m_id = #{m_id} group by m_search order by count desc)) where no = 3)||'%' then tv_title end ) asc,
+	( case when tv_title like '%'||(select m_search from (select m_search, rownum no from (select m_search, count(m_search) count from keysearch where m_id = #{m_id} group by m_search order by count desc)) where no = 4)||'%' then tv_title end ) asc,
+	( case when tv_title like '%'||(select m_search from (select m_search, rownum no from (select m_search, count(m_search) count from keysearch where m_id = #{m_id} group by m_search order by count desc)) where no = 5)||'%' then tv_title end ) asc,
+	</if>
+	tv_no desc)) where no between #{start} and #{end}
+	</select>
+	
+</mapper>

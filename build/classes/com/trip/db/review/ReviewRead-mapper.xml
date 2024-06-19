@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.trip.db.review.ReviewRead-mapper">
+	<!--  Team SQL -->
+	
+	<select id="teamSelect" parameterType="int" resultType="teamDto">
+	select * from team where t_id = #{t_id}
+	</select>
+	
+	<select id="team_Write_List" parameterType="String" resultType="teamDto">
+	select team.* from team inner join teammember on(t_id = tm_tid) where tm_uid = #{tm_uid} and t_id in ( select rs_tno from routeselect where rs_tno in ( select tm_tid from teammember inner join ROUTESELECT on(tm_tid = rs_tno) where tm_uid =#{tm_uid} ) group by rs_tno having t_days in count(rs_tno)) and t_id not in (select tv_teamid from tripreview inner join teammember on(tv_teamid = tm_tid) where tm_uid=#{tm_uid})
+	</select>
+	
+	<!--  TeamMember SQL -->
+	
+	<select id="teamMemberSelect" parameterType="int" resultType="teamMemberDto">
+	select * from teamMember where tm_tid = #{tm_tid}
+	</select>
+	
+	
+	<!--  TeamRoute SQL -->
+	
+	<select id="teamRouteSelect" parameterType="hashMap" resultType="routeSelectDto">
+	select * from routeselect where rs_tno = #{rs_tno} and rs_accdate = #{rs_accdate}
+	</select>
+
+	<!-- tripcomment -->
+
+	<select id="commentCount" parameterType="int" resultType="int">
+	select count(*) from tripreviewcomment where rv_delflag = 'N' and rv_crno = #{rv_crno}
+	</select>
+
+	<select id="commentList" parameterType="hashMap" resultType="tripCommentDto">
+	select * from (select rownum no, level, CONNECT_BY_ISLEAF isleaf, rv.* from tripreviewcomment rv where rv_crno = #{rv_crno} start with rv_pno is null connect by prior rv_no = rv_pno) where no between 1 + (8*(#{page}-1)) and #{page} * 8
+	</select>
+	
+	
+	<insert id="commentInsert" parameterType="tripCommentDto">
+	insert into tripreviewcomment values (tripreviewcomment_id.nextval, #{rv_crno},
+	
+	<if test="rv_pno == 0"> null, </if> <if test="rv_pno != 0"> #{rv_pno}, </if>
+	
+	#{rv_id}, #{rv_content}, sysdate, 'N')
+	
+	</insert>
+	
+	<update id="commentUpdate" parameterType="tripCommentDto">
+	update tripreviewcomment set rv_content = #{rv_content} where rv_no = #{rv_no}
+	</update>
+	
+	<update id="commentDelete" parameterType="int">
+	update tripreviewcomment set rv_delflag = 'Y' where rv_no = #{rv_no}
+	</update>
+
+</mapper>

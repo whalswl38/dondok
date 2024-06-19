@@ -1,0 +1,269 @@
+@charset "UTF-8";
+
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR:300,400,700&display=swap');
+@import
+	url('https://fonts.googleapis.com/css?family=Do+Hyeon&display=swap');
+
+* {
+	margin :0;
+	padding :0;
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+a {
+	text-decoration: none;
+}
+
+
+
+.nowLocation {
+    float: left;
+    height: auto;
+    width: 100%;
+    margin-left: 2%;
+    margin-top: 10px;
+}
+
+.nowLocation span,.nowLocation a{
+	margin-top:0;
+	font-family: 'Do Hyeon', sans-serif;
+}
+
+.nowLocation a:nth-child(1) {
+    position: relative;
+    display: inline-block;
+    font-family: 'Do Hyeon', sans-serif;
+    font-size: 15pt;
+    color: #707C7F;
+    bottom: 4px;
+    margin-right: 15px;
+}
+
+.nowLocation span:nth-child(2) {
+    width: 15px;
+    height: 15px;
+    background-image: url(../images/board_icon/btn01.png);
+    background-size: 100% 100%;
+    display: inline-block;
+    position: relative;
+    bottom: 4px;
+    margin-right: 8px;
+}
+
+.wishBtn  {
+	display: inline-block;
+    border: 0.4px solid #bbb;
+    border-radius: 3px;
+    font-size: 15pt;
+    padding-left: 7px;
+    padding-right: 7px;
+    padding-top: 3px;
+    padding-bottom: 2px;
+    box-shadow: -1px 1px 2px #bbb;
+    position: relative;
+    left: 560px;
+    bottom : 4px;
+}
+
+.wishAdd {
+	background-color: #fff;
+    color: #bbb;
+}
+
+.wishAdd:hover {
+	background-color: #ece257;
+	color : #fff;
+}
+
+.wishDel {
+	background-color: #ece257;
+	color : #fff;
+}
+
+.wishDel:hover {
+	background-color: #fff;
+    color: #bbb;
+}
+
+
+article.contents {
+    width: 887.458px;
+    margin : 15px auto;
+}
+
+.contents > div {
+    width: 97%;
+    margin-left: 1.5%;
+    height: auto;
+}
+
+p.head {
+	height: auto;
+    width: 100%;
+}
+
+p.head:nth-child(1){
+	color: #454C4F;
+	margin-bottom: 10px;
+    position: relative;
+}
+
+span.id {
+    font-size: 12pt;
+    font-weight: 600;
+    color: #454C4F;
+}
+
+span.date {
+    margin-left: 10pt;
+    font-size: 12pt;
+    font-weight: 300;
+}
+p.head > span:nth-child(3){
+	left: 86%;
+	font-weight: 600;
+}
+p.head > span:nth-child(3), p > span:nth-child(4) {
+    position: absolute;
+}
+
+span.count {
+	left: 96.5%;
+	font-weight: 300;
+}
+
+img.locationIcon {
+    display: inline-block;
+    width: 16px;
+}
+span.location {
+    color: #3383C4;
+    font-weight: 600;
+    font-size: 15pt;
+}
+
+.contents_body {
+    padding-top: 45px;
+    padding-bottom: 45px;
+}
+
+.contents_body img {
+	
+	max-width: 100%;
+	height: auto;
+}
+
+.contents_footer {
+    border-top: 1px solid #C1C6C8;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    position: relative;
+}
+
+.commentBtn {
+    display: inline-block;
+    background-color: #FFF;
+    border: 0.4px solid #bbb;
+    border-radius: 4px;
+    width: 125px;
+    height: 29.8px;
+    box-shadow: -1px 1px 2px #bbb;
+}
+
+.commentBtn > p {
+    margin-top: 2px;
+    height: 100%;
+}
+
+.commentBtn:hover {
+	transition-duration: 0.3s;
+	background-color: #57BEEC;
+}
+
+.commentBtn > p > img {
+    display: inline-block;
+    width: 15px;
+    margin-left: 8px;
+}
+
+.commentBtn > p > span {
+    margin: 0;
+    font-family: 'Do Hyeon', sans-serif;
+    color: #363939;
+    letter-spacing: 1pt;
+}
+
+.commentBtn > p > span:nth-child(3) {
+    position: relative;
+    left: 10px;
+    color: #3383C4;
+}
+
+.commentBtn > p:hover > span {
+	transition-duration: 0.3s;
+	color : #fff;
+}
+
+.commentBtn > p > span:nth-last-child(1) {
+    margin-left: 2px;
+    margin-bottom: -0.5px;
+    border-bottom: 0px solid #bbb;
+    border-top: 12px solid #bbb;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    padding-right: 0px;
+    position: absolute;
+    display: block;
+    left: 98px;
+    top: 24px;
+}
+
+.commentBtn > p:hover > span:nth-last-child(1) {
+	transition-duration: 0.3s;
+	margin-left: 2px;
+    margin-bottom: -0.5px;
+    border-bottom: 12px solid #fff;
+    border-top: 0px solid #bbb;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    padding-right: 0px;
+}
+
+
+.contents_footer > a:nth-child(2), .contents_footer > a:nth-child(3), .contents_footer > a:nth-child(4){
+    display: inline-block;
+    background-color: #FFF;
+    border: 0.4px solid #bbb;
+    border-radius: 4px;
+    padding-top: 6px;
+    padding-bottom: 4px;
+    padding-left: 15px;
+    padding-right: 15px;
+    letter-spacing: 1pt;
+    box-shadow: -1px 1px 2px #bbb;
+    color: #363939;
+    font-family: 'Do Hyeon', sans-serif;
+    position: absolute;
+}
+
+.contents_footer > a:hover {
+	transition-duration: 0.3s;
+	color : #fff;
+	background-color: #57BEEC;
+	
+}
+
+a.list {
+    right: 0%;
+}
+
+
+a.modify {
+    right: 15%;
+}
+
+a.delete {
+    right: 7.5%;
+}
+
+

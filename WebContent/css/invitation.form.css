@@ -1,0 +1,188 @@
+@charset "UTF-8";
+
+#article_header, article.article_header {
+    height: 65px;
+    margin: 15px auto;
+    border-bottom: 1px solid #C1C6C8;
+    width: 887.458px;
+}
+
+.nowLocation{
+	float:left;
+	height: inherit;
+	margin-left: 2%;
+}
+
+.locationName {
+	font-family: 'Do Hyeon', sans-serif;
+    font-size: 2.2em;
+    color: #363838;
+    display: inline-block;
+    margin-top: 5%;
+}
+
+a {
+	text-decoration: none;
+}
+
+
+
+.nowLocation {
+    float: left;
+    height: auto;
+    width: 100%;
+    margin-left: 2%;
+    margin-top: 10px;
+}
+
+.nowLocation span,.nowLocation a{
+	margin-top:0;
+	font-family: 'Do Hyeon', sans-serif;
+}
+
+.nowLocation a:nth-child(1) {
+    position: relative;
+    display: inline-block;
+    font-family: 'Do Hyeon', sans-serif;
+    font-size: 15pt;
+    color: #707C7F;
+    bottom: 4px;
+    margin-right: 15px;
+}
+
+.nowLocation span:nth-child(2) {
+    width: 15px;
+    height: 15px;
+    background-image: url(../images/board_icon/btn01.png);
+    background-size: 100% 100%;
+    display: inline-block;
+    position: relative;
+    bottom: 4px;
+    margin-right: 8px;
+}
+
+div.if_header {
+    background-color: #eee;
+    font-size: 13pt;
+    font-weight: 600;
+    text-indent: 10pt;
+    padding: 5px 0px;
+    margin: 12px 0px;
+}
+
+section input[type=text] {
+    border: 1px solid #bbb;
+    border-radius: 4px;
+    padding: 5px;
+    box-shadow: -1px 1px 2px #00000080;
+    text-indent: 8pt;
+    margin: 5px;
+}
+
+#schedule_name{
+	width:95%;
+	height: 25px;
+}
+
+div.if_footer span {
+    margin: 0px 15px;
+}
+
+div#btn_group {
+    margin: 15px auto;
+}
+
+div#btn_group {
+    margin: 15px auto;
+    padding: 15px 0;
+    border-top: 1px solid #ddd;
+    text-align: center;
+}
+
+button#complate, button#cancle {
+    padding: 5px 55px;
+    margin: 0 10px;
+    display: inline-block;
+    font-size: 15pt;
+    font-family: 'Do Hyeon', sans-serif;
+    color: #fff;
+    letter-spacing: 0.5pt;
+    border: 0px;
+    border-radius: 4px;
+    box-shadow: -1px 1px 2px #00000080;
+}
+
+button#complate{
+	background-color: #3383c4;
+}
+
+button#cancle{
+	background-color: #db362c;
+}
+
+button#complate:hover {
+	transition-duration: 0.3s;
+	background-color: #25ae70;	
+}
+
+button#cancle:hover {
+	transition-duration: 0.3s;
+	background-color: #9f297a;	
+}
+
+button#invite {
+    position: relative;
+    top: 2px;
+    color: #fff;
+    border: 0px;
+    font-size: 15pt;
+    background-color: #3383c4;
+    border-radius: 4px;
+    padding: 0px 10px 3px 10px;
+    box-shadow: -1px 1px 2px #00000080;
+}
+
+button#invite:hover{
+	transition-duration: 0.3s;
+	background-color: #25ae70;	
+}
+
+span#res {
+    color: #db362c;
+    font-size: 11px;
+}
+
+div#add_list {
+    padding: 10px;
+    margin: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.if_item_id {
+    text-indent: 15px;
+    margin: 0 5px;
+    padding: 15px 0px;
+    border-bottom: 1px solid #eee;
+}
+
+.if_item_id:nth-last-child(1){
+	border : 0;
+}
+
+div.if_item_id input[type="button"] {
+    border: 1px solid #ddd;
+    padding: 6px 10px;
+    border-radius: 4px;
+    background-color: #fff;
+    box-shadow: -1px 1px 2px #00000080;
+    margin-left: 10px;
+}
+
+div.if_item_id input[type="button"]:hover {
+	
+	transition-duration: 0.3s;
+	background-color: #3383c4;
+	color:#fff;
+	border : 1px solid #3383c4;
+}

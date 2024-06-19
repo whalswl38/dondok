@@ -1,0 +1,256 @@
+@charset "UTF-8";
+article.footer {
+    width: 887.458px;
+    height: auto;
+    display: block;
+    position: relative;
+    background-color: #F2F2F2;
+    margin : 15px auto;
+}
+
+.commentDiv {
+    height: auto;
+    width: 95%;
+    position: relative;
+    left: 2.5%;
+}
+
+.commentList {
+    position: relative;
+    display: none;
+    height: auto;
+    padding-top: 25px;
+    padding-bottom: 15px;
+}
+
+.commentValue {
+    height: auto;
+    width: 100%;
+    position: relative;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    border-bottom: 0.3px solid #C1C6C8;
+}
+
+.commentValue p {
+    height: auto;
+    width: 100%;
+    position: relative;
+    margin-bottom: 15px;
+    color: #454C4F;
+    letter-spacing: 0.8pt;
+}
+
+p.commentValHead {
+    height: 20px;
+}
+
+p.commentValFoot {
+    height: 30px;
+}
+
+p.commentValMiddle {
+    font-weight: 100;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    margin-left: 2.5%;
+    width: 95%;
+    word-break:break-all;
+    clear: both;
+}
+
+.commentValue > p > span {
+	height: inherit;
+}
+
+span.level {
+	float: left;
+    letter-spacing: -5px;
+    margin-right: 10px;
+    color: #b7b7b7;
+}
+
+span.commentId {
+    font-weight: 600;
+    float: left;
+}
+
+span.commentDate {
+    color: #707C7F;
+    font-size: 10pt;
+    font-weight: 100;
+    vertical-align: middle;
+    position:absolute;
+    left: 81%;
+    float: right;
+}
+
+
+.commentValue p:nth-last-child(1){
+	margin-bottom : 0;
+}
+
+.commentValFoot a {
+	display: inline-block;
+    background-color: #FFF;
+    border: 0.4px solid #bbb;
+    border-radius: 4px;
+    padding-top: 6px;
+    padding-bottom: 4px;
+    padding-left: 15px;
+    padding-right: 15px;
+    letter-spacing: 1pt;
+    box-shadow: -1px 1px 2px #bbb;
+    color: #363939;
+    font-family: 'Do Hyeon', sans-serif;
+    float: left;
+    margin-left: 5px;
+}
+
+.commentValFoot a:hover {
+	
+	background-color : #57BEEC;
+	color : #fff;
+	
+}
+
+.commentPage {
+    width: 100%;
+    height: 32px;
+    padding-top: 10px;
+    position: relative;
+    display : none;
+}
+
+.commentPage > .pageGroup {
+    position: relative;
+    width: 31.7%;
+    height: 100%;
+    visibility: visible;
+    margin-left: 35%;
+}
+
+.commentPage > .pageGroup a {
+    width: 33px;
+    height: 33px;
+    margin-right: 6px;
+    text-decoration : none;
+    float: left;
+}
+
+.commentPage >.pageGroup > a:nth-last-child(1) {
+	margin-right : 0px
+}
+
+.commentPage > .pageGroup > a > div {
+    height: 32px;
+    width: 32px;
+    background-color: #F2F2F2;
+    border: 1px solid #b7bcbe;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.commentPage  span.num {
+    position: relative;
+    top: 2.5px;
+    color: #808686;
+    font-size: 11pt;
+}
+
+.commentPage .nextBtnImg {
+    display: block;
+    margin-top: 8.5px;
+    margin-left: 11px;
+    border-top: 7px solid transparent;
+    border-bottom: 7px solid transparent;
+    border-right: 0px solid transparent;
+    border-left: 12px solid #C1C6C8;
+}
+
+.commentPage .prevBtnImg {
+    display: block;
+    margin-top: 8.5px;
+    margin-right: 11px;
+    border-top: 7px solid transparent;
+    border-bottom: 7px solid transparent;
+    border-left: 0px solid transparent;
+    border-right: 12px solid #C1C6C8;
+}
+
+.commentWrite {
+	display: block;
+	position: relative;
+	padding-top: 25px;
+	padding-bottom: 25px;
+}
+
+.commentWrite > div {
+    display: block;
+    position: relative;
+    height: 140px;
+    background-color: #fff;
+}
+
+.commentWriteBac {
+    height: max-content;
+    position: relative;
+    top: 5px;
+}
+
+.commentWriteBac p {
+	
+	letter-spacing: 0.5pt;
+	
+}
+p.commentMyId {
+    margin-left: 15px;
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: #454C4F;
+    height: 24px;
+}
+
+.commentTextArea {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    height: 80px;
+}
+
+textarea.commentContext {
+    display: inline-block;
+    width: 85%;
+    height: 73px;
+    margin-left: 15px;
+    padding-top: 5px;
+    padding-left: 5px;
+    float: left;
+}
+
+button.commentSummit {
+	
+    float: left;
+    margin-right: 15px;
+    border: 1px solid #bbb;
+    background-color: #fff;
+    height: 100%;
+    width: 10%;
+    color: #454C4F;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.4pt
+}
+
+button.commentSummit:hover {
+	background-color : #57BEEC;
+	color : #fff;
+}
+
+p.commentCount {
+    font-weight: 100;
+    color: #707C7F;
+    font-size: 10pt;
+    margin-left: 15pt;
+    margin-top: -5px;
+}
